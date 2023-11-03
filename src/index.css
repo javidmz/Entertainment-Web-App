@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    max-width: 100vw;
+    background-color: hsl(223deg 30% 9%);
+    color: white;
+    font-family: "Poppins", sans-serif;
+  }
+
+  #root {
+    width: 100%;
+  }
+}
+
+.swiper {
+  padding-bottom: 40px !important;
+}
+
+.swiper-pagination-bullet {
+  background-color: white !important;
+}
+
+@media (min-width: 640px) {
+  .swiper-pagination-bullet {
+    width: 10px !important;
+    height: 10px !important;
+  }
+}
+
+.custom-loader {
+  width: 50px;
+  height: 50px;
+  display: grid;
+  border-radius: 50%;
+  -webkit-mask: radial-gradient(farthest-side, #0000 40%, #000 41%);
+  background: linear-gradient(0deg, #f40d0d80 50%, #f40d0dff 0) center/4px 100%,
+    linear-gradient(90deg, #f40d0d40 50%, #f40d0dbf 0) center/100% 4px;
+  background-repeat: no-repeat;
+  animation: s3 1s infinite steps(12);
+}
+.custom-loader::before,
+.custom-loader::after {
+  content: "";
+  grid-area: 1/1;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.915;
+  transform: rotate(30deg);
+}
+.custom-loader::after {
+  opacity: 0.83;
+  transform: rotate(60deg);
+}
+
+@keyframes s3 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.skeleton {
+  position: relative;
+}
+.skeleton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background: linear-gradient(90deg, #787777, #5d5c5c, #787777);
+  background-size: 200%;
+  animation: skeleton 1.5s infinite reverse;
+}
+@keyframes skeleton {
+  0% {
+      background-position: -100% 0;
+  }
+  100% {
+      background-position: 100% 0;
+  }
+}
+
+@layer utilities {
+  #nav-container,
+  #mobile-menu {
+    background-color: hsl(223deg 36% 14%);
+  }
+
+  .toggle-btn {
+    @apply [&>div::before]:translate-y-0 [&>div::before]:rotate-45 [&>div::after]:translate-y-0 [&>div::after]:-rotate-45 [&>div]:bg-transparent [&>div]:rotate-[720deg];
+  }
+}
