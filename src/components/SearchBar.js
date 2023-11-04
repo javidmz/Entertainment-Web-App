@@ -16,6 +16,8 @@ const SearchBar = (props) => {
       .split(/[\s,\t,\n]+/)
       .join("%20");
 
+    if(searchLists.length === 0)
+      return;
     if (location.includes("movie"))
       navigate(`/search/movie?text=${searchLists}&page=1`);
     else if (location.includes("tv"))
